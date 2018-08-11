@@ -1,9 +1,8 @@
 <template>
   <div class="addName">
     食材名を入力してください<br/>
-    <input v-model="temp" type="text">
+    <input v-model="food" type="text">
     <button v-on:click="addFood()">追加</button>
-    {{food}}
   </div>
 </template>
 
@@ -12,15 +11,17 @@
     props: [
       'def_food'
     ],
-    data(){
+    data() {
       return {
         food: this.def_food,
-        temp: ""
       }
     },
     methods: {
-      addFood() {
-        this.food = this.temp
+      addFood (event) {
+        alert('食材は「' + this.food + '」ですね');
+        if (event) {
+          alert(event.target.tagName);
+        }
       }
     }
   }
