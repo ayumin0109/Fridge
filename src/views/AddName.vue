@@ -18,7 +18,7 @@
     },
     methods: {
       addFood (event) {
-        alert('食材は「' + this.food + '」ですね');
+        alert(`食材は「${ this.food }」ですね`);
         if (event) {
           alert(event.target.tagName);
         }
