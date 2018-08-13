@@ -15,6 +15,10 @@
           <i class="list_item_icon material-icons">add_circle_outline</i>
           <div>追加</div>
         </router-link>
+        <FoodsListAdd
+        :targetStorage="targetStorage"
+        FoodName="テスト食品"
+        />
       </li>
     </ul>
   </div>
@@ -25,6 +29,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { State, Action, Getter, Mutation } from 'vuex-class';
 import { StorageStock, StorageStockStatus, StorageAddArg } from '@/stores/storage/types';
 import { Food } from '@/stores/foodList/types';
+import FoodsListAdd from './FoodsListAdd.vue';
 import _ from 'lodash';
 
 const storageNameSpace = 'storage';
@@ -38,10 +43,13 @@ interface List {
 
 @Component({
   name: 'FoodsList',
+  components: {
+    FoodsListAdd,
+  },
 })
 
 export default class FoodsList extends Vue {
-  private items: StorageStock[] = [];
+  // private items: StorageStock[] = [];
   private targetStorage: string = 'fridge';
   // @Prop() private title!: string;
   @Getter('fridge', {namespace: storageNameSpace}) private fridge: any;
@@ -56,6 +64,31 @@ export default class FoodsList extends Vue {
 
   private mounted() {
     this.targetStorage = this.$route.params.id || 'fridge';
+    // let items: StorageStock[] = [];
+    // switch (this.targetStorage) {
+    //   case 'fridge':
+    //   default:
+    //     items = this.fridge;
+    //     break;
+    //   case 'freezer':
+    //     items = this.freezer;
+    //     break;
+    //   case 'vege':
+    //     items = this.vege;
+    //     break;
+    // }
+
+    // this.items = _.map(items, (item: any): List => {
+    //   return {
+    //     food: this.foodlist.get(item.id),
+    //     status: item.status,
+    //     id: item.id,
+    //   };
+    // });
+  }
+
+  get items(): StorageStock[] {
+    // this.targetStorage = this.$route.params.id || 'fridge';
     let items: StorageStock[] = [];
     switch (this.targetStorage) {
       case 'fridge':
@@ -70,7 +103,7 @@ export default class FoodsList extends Vue {
         break;
     }
 
-    this.items = _.map(items, (item: any): List => {
+    return _.map(items, (item: any): List => {
       return {
         food: this.foodlist.get(item.id),
         status: item.status,

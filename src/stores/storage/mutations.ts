@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import { MutationTree } from 'vuex';
 import { StorageState, StorageStock, StorageAddArg } from './types';
 import _ from 'lodash';
@@ -29,7 +30,9 @@ export const mutations: MutationTree<StorageState> = {
     change(state: any, {target, stock}: StorageAddArg ): void {
       if (['fridge', 'vege', 'freezer'].includes(target)) {
         const idx = _.findIndex(state[target], {id: stock.id});
-        state[target][idx] = _.clone(stock);
+
+        // see: https://vuex.vuejs.org/guide/mutations.html#mutations-follow-vue-s-reactivity-rules
+        Vue.set(state[target], idx, stock);
       }
     },
   };

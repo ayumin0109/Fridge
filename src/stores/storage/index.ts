@@ -9,15 +9,15 @@ const namespaced: boolean = true;
 const temp: StorageStock[] = [
     {
         status: StorageStockStatus.MANY,
-        id: 0,
-    },
-    {
-        status: StorageStockStatus.FEW,
         id: 1,
     },
     {
-        status: StorageStockStatus.NOTHING,
+        status: StorageStockStatus.FEW,
         id: 2,
+    },
+    {
+        status: StorageStockStatus.NOTHING,
+        id: 3,
     },
 ];
 

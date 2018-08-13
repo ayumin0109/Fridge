@@ -26,6 +26,7 @@ export default class Main extends Vue {
 
   @Mutation('add', {namespace: storageNameSpace}) private add: any;
   @Mutation('setFood', {namespace: foodListNameSpace}) private setFood: any;
+  @Getter('autoIncrement', {namespace: foodListNameSpace}) private autoIncrement!: number;
 
   private mounted() {
     // console.log(this.storage);
@@ -33,8 +34,8 @@ export default class Main extends Vue {
 
   private addStorage() {
     // FoodList中に保存
-    const id: number = this.setFood(this.FoodName);
-
+    const id = this.autoIncrement;
+    this.setFood(this.FoodName);
     // Storageへ追加
     const stock: StorageStock = {
         status: StorageStockStatus.MANY,
