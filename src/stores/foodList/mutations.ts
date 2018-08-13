@@ -2,7 +2,7 @@ import { MutationTree } from 'vuex';
 import { Food, FoodsListState } from './types';
 
 export const mutations: MutationTree<FoodsListState> = {
-  setFood(state, name: string) {
+  setFood(state, name: string): number {
     const max: number = state.autoIncrement;
     const food: Food = {
       id: max,
@@ -11,5 +11,6 @@ export const mutations: MutationTree<FoodsListState> = {
     };
     state.items.set(max, food);
     state.autoIncrement += 1;
+    return food.id;
   },
 };

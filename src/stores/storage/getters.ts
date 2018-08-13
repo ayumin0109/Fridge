@@ -1,9 +1,9 @@
 import { GetterTree } from 'vuex';
-import { StorageState } from './types';
+import { StorageState, StorageStock } from './types';
 import { RootState } from '../types';
 
 export const getters: GetterTree<StorageState, RootState> = {
-    fridge: (state) => state.fridge,
-    freezer: (state) => state.freezer,
-    vegetable: (state) => state.vegetable,
+    fridge: (state): StorageStock[] => state.fridge,
+    freezer: (state): StorageStock[] => state.freezer,
+    vege: (state): StorageStock[] => state.vege,
 };

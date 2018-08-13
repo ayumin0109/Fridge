@@ -1,12 +1,22 @@
-
-export interface StorageState {
-    fridge: number[];
-    freezer: number[];
-    vegetable: number[];
+export enum StorageStockStatus {
+    NOTHING = 0,
+    FEW,
+    MANY,
+    EOL,
 }
 
-export const state: StorageState = {
-    fridge: [],
-    freezer: [],
-    vegetable: [],
-};
+export interface StorageStock {
+    status: number;
+    id: number;
+}
+
+export interface StorageAddArg {
+    target: string;
+    stock: StorageStock;
+}
+
+export interface StorageState {
+    fridge: StorageStock[];
+    freezer: StorageStock[];
+    vege: StorageStock[];
+}
