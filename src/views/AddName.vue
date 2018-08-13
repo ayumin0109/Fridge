@@ -23,14 +23,9 @@
           "vege" : "野菜室",
           "freezer" : "冷凍室",
         }
-        const param = this.$route.params.block
-        if(typeof blocks[param] === "undefined") {
-          alert(`URLが不正です`);
-        } else {
-          alert(`${ blocks[param] }に${ this.food }を追加しました`);
-          if (event) {
-            alert(event.target.tagName);
-          }
+        alert(`${ blocks[this.$route.params.block] }に${ this.food }を追加しました`);
+        if (event) {
+          alert(event.target.tagName);
         }
       }
     }
@@ -69,4 +64,3 @@ button:active{
   background-color: #A5D6A7;
 }
 </style>
-
