@@ -22,12 +22,20 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
     },
     {
-      path: '/addName',
+      path: '/addName/:block',
       name: 'addName',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/AddName.vue'),
+      beforeEnter: (to, from, next) => {
+        if(to.params.block === 'fridge' || to.params.block === 'vege' || to.params.block === 'freezer') {
+          next();
+        } else {
+          console.log('URLが不正です')
+          next(false)
+        }
+      }
     },
   ],
 });
